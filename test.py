@@ -53,16 +53,16 @@ b = complex_.head()
 #song_clu = clu_km.clustering_test( by = 'songs'  )
 #song_clu.to_pickle("data/digitization/clu_song_emb_200.pickle")
 
-tag_gnr_title_clu = clu_km.clustering_test( merged_t.tag_gnr_title() , by = 'tag_gnr_title')
-tag_gnr_title_clu.to_pickle("data/digitization/clu_tag_gnr_title_emb_100.pickle")
-
-# C. singer
-singer_clu = clu_km.clustering_test( merged_t.title_singer() , by = 'title_singer')
-singer_clu.to_pickle("data/digitization/clu_singer_emb_100.pickle")
-
-# D. tag : complex_
-tag_clu = clu_km.clustering_test( by = 'tags'  )
-tag_clu.to_pickle("data/digitization/clu_tag_emb_30.pickle")
+# tag_gnr_title_clu = clu_km.clustering_test( merged_t.tag_gnr_title() , by = 'tag_gnr_title')
+# tag_gnr_title_clu.to_pickle("data/digitization/clu_tag_gnr_title_emb_100.pickle")
+#
+# # C. singer
+# singer_clu = clu_km.clustering_test( merged_t.title_singer() , by = 'title_singer')
+# singer_clu.to_pickle("data/digitization/clu_singer_emb_100.pickle")
+#
+# # D. tag : complex_
+# tag_clu = clu_km.clustering_test( by = 'tags'  )
+# tag_clu.to_pickle("data/digitization/clu_tag_emb_30.pickle")
 
 
 # E. dtl_genre 원핫 인코딩을 했으므로 이 단계 생략

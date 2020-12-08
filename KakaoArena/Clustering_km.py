@@ -147,13 +147,13 @@ class Clustering:
         self.clu = self.config[by].pop("clu")
 
         is_multi = by in ["title_singer","tag_gnr_title"]
-        
+
         if not(is_multi):
             df = self.complex_[["id", by]].sort_values(by="id")
-        elif is_multi:
-            df.columns = ["id", by]
         elif by == 'album':
             song_album = dict(zip(self.meta.id, self.meta.album_id))
+        elif is_multi:
+            df.columns = ["id", by]
         else:
             print( "error 수치화 대상이 올바르지 않아요")
         print(f"clustering {by} -ing")
