@@ -12,8 +12,8 @@ class Clustering:
     def __init__(self, complex_, meta):
         self.complex_ = complex_
         self.meta = meta
-        self.config = {"song" : { "size":100 , "window" : 50, "min_count":1, "sg":0 , "clu" : 200},
-                       "tag" : { 'size' : 100 , "window" : 8, 'min_count' : 1 , "sg": 0 , "clu": 30},
+        self.config = {"songs" : { "size":100 , "window" : 50, "min_count":1, "sg":0 , "clu" : 200},
+                       "tags" : { 'size' : 100 , "window" : 8, 'min_count' : 1 , "sg": 0 , "clu": 30},
                        "album" : { 'size' : 100 , "window" : 8, 'min_count' : 1 , "sg": 0 , "clu": 100},
                        "title_singer" : { 'size' : 100 , "window" : 40, 'min_count' : 1 , "sg": 0, "clu": 100},
                        "tag_gnr_title" : { 'size' : 100 , "window" : 40, 'min_count' : 1 , "sg": 0 , "clu": 100},
@@ -163,9 +163,10 @@ class Clustering:
         items = {}
         for i, itms in enumerate(df[by]):
             if by == 'album':
-                items[i] = [str(itm) for itm in itms ]
-            else:
                 items[i] = list(set([str(song_album[itm]) for itm in itms]))
+            else:
+                items[i] = [str(itm) for itm in itms]
+
 
         emb_df = self.embedding(items, by)
         return emb_df

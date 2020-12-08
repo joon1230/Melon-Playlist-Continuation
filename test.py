@@ -48,7 +48,9 @@ tag_title_df.to_pickle("data/tag_title_df.pickle")
 
 print( (time.time() - start)/60 )
 #%%
-song_clu = clu_km.clustering_test( by = 'song'  )
+b = complex_.head()
+#%%
+song_clu = clu_km.clustering_test( by = 'songs'  )
 song_clu.to_pickle("data/digitization/clu_song_emb_200.pickle")
 
 tag_gnr_title_clu = clu_km.clustering_test( merged_t.tag_gnr_title() , by = 'tag_gnr_title')
@@ -59,7 +61,7 @@ singer_clu = clu_km.clustering_test( merged_t.title_singer() , by = 'title_singe
 singer_clu.to_pickle("data/digitization/clu_singer_emb_100.pickle")
 
 # D. tag : complex_
-tag_clu = clu_km.clustering_test( by = 'tag'  )
+tag_clu = clu_km.clustering_test( by = 'tags'  )
 tag_clu.to_pickle("data/digitization/clu_tag_emb_30.pickle")
 
 
