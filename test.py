@@ -59,8 +59,8 @@ b = complex_.head()
 # # C. singer
 # singer_clu = clu_km.clustering_test( merged_t.title_singer() , by = 'title_singer')
 # singer_clu.to_pickle("data/digitization/clu_singer_emb_100.pickle")
-#
-# # D. tag : complex_
+# #
+# # # D. tag : complex_
 # tag_clu = clu_km.clustering_test( by = 'tags'  )
 # tag_clu.to_pickle("data/digitization/clu_tag_emb_30.pickle")
 
@@ -77,29 +77,29 @@ emb_df.to_pickle('data/digitization/clu_album_emb100.pickle' )
 
 #%%
 
-
-# A. Song  : complex_
-song_clu = clu_km.clustering_song( clu = 200 )
-song_clu.to_pickle("data/digitization/clu_song_emb_200.pickle")
-
-# B. word
-tag_gnr_title_clu = clu_km.clustering_( merged_t.tag_gnr_title() , clu = 100)
-tag_gnr_title_clu.to_pickle("data/digitization/clu_tag_gnr_title_emb_100.pickle")
-
-
-# C. singer
-singer_clu = clu_km.clustering_( merged_t.title_singer() , clu = 100)
-singer_clu.to_pickle("data/digitization/clu_singer_emb_100.pickle")
-
-# D. tag : complex_
-tag_clu = clu_km.clustering_tag( clu = 30  )
-tag_clu.to_pickle("data/digitization/clu_tag_emb_30.pickle")
-
-
-# E. dtl_genre 원핫 인코딩을 했으므로 이 단계 생략
-
-
-# F . album  아래에서 df 랑 clustering이랑 코드가 합쳐져있음.
-emb_df , album_df  = clu_km.clustering_album( clu = 100 )
-emb_df.to_pickle('data/digitization/clu_album_emb100.pickle' )
-album_df.to_pickle('data/digitization/album_df_.pickle') # 데이타 프레임 윗단계
+#
+# # A. Song  : complex_
+# song_clu = clu_km.clustering_song( clu = 200 )
+# song_clu.to_pickle("data/digitization/clu_song_emb_200.pickle")
+#
+# # B. word
+# tag_gnr_title_clu = clu_km.clustering_( merged_t.tag_gnr_title() , clu = 100)
+# tag_gnr_title_clu.to_pickle("data/digitization/clu_tag_gnr_title_emb_100.pickle")
+#
+#
+# # C. singer
+# singer_clu = clu_km.clustering_( merged_t.title_singer() , clu = 100)
+# singer_clu.to_pickle("data/digitization/clu_singer_emb_100.pickle")
+#
+# # D. tag : complex_
+# tag_clu = clu_km.clustering_tag( clu = 30  )
+# tag_clu.to_pickle("data/digitization/clu_tag_emb_30.pickle")
+#
+#
+# # E. dtl_genre 원핫 인코딩을 했으므로 이 단계 생략
+#
+#
+# # F . album  아래에서 df 랑 clustering이랑 코드가 합쳐져있음.
+# emb_df , album_df  = clu_km.clustering_album( clu = 100 )
+# emb_df.to_pickle('data/digitization/clu_album_emb100.pickle' )
+# album_df.to_pickle('data/digitization/album_df_.pickle') # 데이타 프레임 윗단계

@@ -145,27 +145,25 @@ class Clustering:
         ## tag는 변수에 사용x
         """
         self.clu = self.config[by].pop("clu")
-
         is_multi = by in ["title_singer","tag_gnr_title"]
 
-        if not(is_multi):
-            df = self.complex_[["id", by]].sort_values(by="id")
+        if is_multi:
+            df.columns = ["id", by]
         elif by == 'album':
             song_album = dict(zip(self.meta.id, self.meta.album_id))
-        elif is_multi:
-            df.columns = ["id", by]
         else:
-            print( "error 수치화 대상이 올바르지 않아요")
+            df = self.complex_[["id", by]].sort_values(by="id")
         print(f"clustering {by} -ing")
 
         # if by == "tag":
         #     df.to_pickle('tag_df.pickle')
 
         items = {}
-        for i, itms in enumerate(df[by]):
-            if by == 'album':
+        if by == 'album' :
+            for i, itms in enumerate(self.complex_.songs):
                 items[i] = list(set([str(song_album[itm]) for itm in itms]))
-            else:
+        else:
+            for i, itms in enumerate(df[by]):
                 items[i] = [str(itm) for itm in itms]
 
 
