@@ -147,7 +147,8 @@ class Clustering:
         self.clu = self.config[by].pop("clu")
 
         is_multi = by in ["title_singer","tag_gnr_title"]
-        if ~is_multi:
+        
+        if not(is_multi):
             df = self.complex_[["id", by]].sort_values(by="id")
         elif is_multi:
             df.columns = ["id", by]

@@ -50,8 +50,8 @@ print( (time.time() - start)/60 )
 #%%
 b = complex_.head()
 #%%
-song_clu = clu_km.clustering_test( by = 'songs'  )
-song_clu.to_pickle("data/digitization/clu_song_emb_200.pickle")
+#song_clu = clu_km.clustering_test( by = 'songs'  )
+#song_clu.to_pickle("data/digitization/clu_song_emb_200.pickle")
 
 tag_gnr_title_clu = clu_km.clustering_test( merged_t.tag_gnr_title() , by = 'tag_gnr_title')
 tag_gnr_title_clu.to_pickle("data/digitization/clu_tag_gnr_title_emb_100.pickle")
