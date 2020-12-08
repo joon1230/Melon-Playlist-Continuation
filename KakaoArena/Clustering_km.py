@@ -153,11 +153,10 @@ class Clustering:
             song_album = dict(zip(self.meta.id, self.meta.album_id))
         else:
             df = self.complex_[["id", by]].sort_values(by="id")
-        print(f"clustering {by} -ing")
 
+        print(f"digitize ## {by} ")
         # if by == "tag":
         #     df.to_pickle('tag_df.pickle')
-
         items = {}
         if by == 'album' :
             for i, itms in enumerate(self.complex_.songs):
@@ -165,7 +164,6 @@ class Clustering:
         else:
             for i, itms in enumerate(df[by]):
                 items[i] = [str(itm) for itm in itms]
-
 
         emb_df = self.embedding(items, by)
         return emb_df
@@ -179,17 +177,21 @@ class Clustering:
         idx_items = np.asarray(w2v_model.wv.index2word)
         items_vec = w2v_model.wv.vectors
 
+        print( "%-20s"%('embedding...') , end = '\r' )
         col = [f'vector{i}' for i in range(1, items_vec.shape[1] + 1)]
         emb_df = pd.DataFrame(items_vec, columns=col)
         emb_df[f'{by}_id'] = idx_items
         emb_df = emb_df[[f'{by}_id'] + col]
 
+
         # kmeans
+        print("%-20s"%('clustering...'), end='\r')
         kmeans = KMeans(n_clusters=clu)
         kmeans.fit(items_vec)
 
         emb_df['label'] = kmeans.labels_
         emb_df = emb_df[[f'{by}_id', 'label']]
+        print(f'complete digitization{by}' , end = '\n\n')
         return emb_df
 
 

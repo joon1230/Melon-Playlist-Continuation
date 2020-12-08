@@ -43,12 +43,11 @@ start = time.time()
 
 merged_t = mt.Merged_table( complex_, genre, meta )
 clu_km = km.Clustering( complex_, meta )
-tag_title_df = merged_t.tag_title( )
-tag_title_df.to_pickle("data/tag_title_df.pickle")
+# tag_title_df = merged_t.tag_title( )
+# tag_title_df.to_pickle("data/tag_title_df.pickle")
 
 print( (time.time() - start)/60 )
-#%%
-b = complex_.head()
+
 #%%
 #song_clu = clu_km.clustering_test( by = 'songs'  )
 #song_clu.to_pickle("data/digitization/clu_song_emb_200.pickle")
@@ -60,17 +59,17 @@ b = complex_.head()
 # singer_clu = clu_km.clustering_test( merged_t.title_singer() , by = 'title_singer')
 # singer_clu.to_pickle("data/digitization/clu_singer_emb_100.pickle")
 # #
-# # # D. tag : complex_
-# tag_clu = clu_km.clustering_test( by = 'tags'  )
-# tag_clu.to_pickle("data/digitization/clu_tag_emb_30.pickle")
+# D. tag : complex_
+tag_clu = clu_km.clustering_test( by = 'tags'  )
+tag_clu.to_pickle("data/digitization/clu_tag_emb_30.pickle")
 
 
 # E. dtl_genre 원핫 인코딩을 했으므로 이 단계 생략
 
 
 # F . album  아래에서 df 랑 clustering이랑 코드가 합쳐져있음.
-emb_df   = clu_km.clustering_test( by = 'album'  )
-emb_df.to_pickle('data/digitization/clu_album_emb100.pickle' )
+# emb_df   = clu_km.clustering_test( by = 'album'  )
+# emb_df.to_pickle('data/digitization/clu_album_emb100.pickle' )
 #album_df.to_pickle('data/digitization/album_df_.pickle') # 데이타 프레임 윗단계
 
 
