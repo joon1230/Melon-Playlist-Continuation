@@ -38,7 +38,12 @@ print( (time.time() - start)/60 )
 # meta = pd.read_pickle( 'data/done_filter_meta.pickle') # 한번했으면 이것만 불러오기
 
 
-#%%
+#%% preprocessing part!!!
+"""
+전처리 구간. 
+이상치 관련 : 음원 날짜 수정
+형태소 분석 : 플레이리스트 제목 형태소 분석
+"""
 print(os.getcwd())
 start = time.time()
 
@@ -47,12 +52,17 @@ merged_t = mt.Merged_table( complex_, genre, meta )
 get_df = gd.Get_data(complex_, genre, meta)
 id_title = get_df.get_title_df()
 
-# tag_gnr_title_df = merged_t.tag_gnr_title(id_title = id_title)
-# title_singer_df = merged_t.title_singer(id_title = id_title)
-
 print( (time.time() - start)/60 )
 
 #%%
+"""
+데이터 수치화 구간
+song 
+tag & genre & title
+tag
+genre
+album
+"""
 clu_km = km.Clustering( complex_, meta )
 
 #song_clu = clu_km.clustering_test( by = 'songs'  )
