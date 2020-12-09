@@ -7,11 +7,12 @@ class Merged_table():
         self.meta = meta
         self.genre = genre
 
-    def tag_title( self ):
+    def tag_title( self, id_title = pd.DataFrame() ):
         print ("tag_title_merge")
         # tar , title 함수 다 넣기
-        get_df = gd.Get_data( self.complex_, self.genre, self.meta )
-        id_title = get_df.get_title_df()
+        if id_title.empty:
+            get_df = gd.Get_data(self.complex_, self.genre, self.meta)
+            id_title = get_df.get_title_df()
         id_tag = self.complex_[["id", "tags"]].sort_values(by="id")
 
         # 두개를 merge 하기
@@ -34,12 +35,13 @@ class Merged_table():
         return result
 
 
-    def tag_gnr_title( self ):
+    def tag_gnr_title( self, id_title = pd.DataFrame() ):
         print("tag_gnr_title_merge")
         # tar , gnr , title 함수 다 넣기
         get_df = gd.Get_data( self.complex_, self.genre, self.meta )
         id_gnr = get_df.get_gnr_df()
-        id_title = get_df.get_title_df()
+        if id_title.empty:
+            id_title = get_df.get_title_df()
         id_tag = self.complex_[["id", "tags"]].sort_values(by="id")
 
         # 세개를 merge 하기
@@ -62,10 +64,11 @@ class Merged_table():
         return result
 
 
-    def title_singer( self ):
+    def title_singer( self, id_title = pd.DataFrame() ):
         print("title_singer_merge")
         get_df = gd.Get_data( self.complex_, self.genre, self.meta )
-        id_title = get_df.get_title_df()
+        if id_title.empty:
+            id_title = get_df.get_title_df()
         id_singer = get_df.get_singer_df()
 
         # 두개를 merge 하기
