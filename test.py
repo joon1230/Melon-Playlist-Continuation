@@ -41,15 +41,23 @@ print( (time.time() - start)/60 )
 #%% preprocessing part!!!
 """
 전처리 구간. 
-이상치 관련 : 음원 날짜 수정
-형태소 분석 : 플레이리스트 제목 형태소 분석
+이상치 관련 : 음원 날짜 수정 # 
+형태소 분석 : 플레이리스트 제목 형태소 분석 # id_title
 """
 print(os.getcwd())
 start = time.time()
 
-merged_t = mt.Merged_table( complex_, genre, meta )
 
+# meta data  date 필터링 해주기
+print( "%-20s"%("date filtering"))
+filter_date = fdate.Filter_date( complex_ , meta )
+meta = filter_date.kill_zeros()
+
+merged_t = mt.Merged_table( complex_, genre, meta )
 get_df = gd.Get_data(complex_, genre, meta)
+
+# tokenize
+print( "%-20s"%("tokenize"), end = '\r')
 id_title = get_df.get_title_df()
 
 print( (time.time() - start)/60 )

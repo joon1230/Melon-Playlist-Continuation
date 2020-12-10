@@ -191,7 +191,7 @@ class Clustering:
 
         emb_df['label'] = kmeans.labels_
         emb_df = emb_df[[f'{by}_id', 'label']]
-        print(f'complete digitization{by}' , end = '\n\n')
+        print(f'completed : {by}' , end = '\n\n')
         return emb_df
 
 

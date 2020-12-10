@@ -8,7 +8,7 @@ class Merged_table():
         self.genre = genre
 
     def tag_title( self, id_title = pd.DataFrame() ):
-        print ("tag_title_merge")
+        # print ("tag_title_merge")
         # tar , title 함수 다 넣기
         if id_title.empty:
             get_df = gd.Get_data(self.complex_, self.genre, self.meta)
@@ -36,7 +36,7 @@ class Merged_table():
 
 
     def tag_gnr_title( self, id_title = pd.DataFrame() ):
-        print("tag_gnr_title_merge")
+        # print("tag_gnr_title_merge")
         # tar , gnr , title 함수 다 넣기
         get_df = gd.Get_data( self.complex_, self.genre, self.meta )
         id_gnr = get_df.get_gnr_df()
@@ -65,7 +65,7 @@ class Merged_table():
 
 
     def title_singer( self, id_title = pd.DataFrame() ):
-        print("title_singer_merge")
+        # print("title_singer_merge")
         get_df = gd.Get_data( self.complex_, self.genre, self.meta )
         if id_title.empty:
             id_title = get_df.get_title_df()
