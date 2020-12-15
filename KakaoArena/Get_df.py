@@ -61,17 +61,17 @@ class Get_data:
 
     # 타이틀을 토크나이즈 하는 함수 ** 고생한 윤소의 작품 **
     def js_title(  self ):
+        input_file = 'util/tokenized/title.txt'  # 아까 만들어준 traindata의 텍스트파일
+        model_name = 'util/tokenized/model/subword_tokenizer_kor'  # 모델이름 (맘대로 커스텀가능)
 
         self.complex_['plylst_title'] = pre.re_sub(self.complex_['plylst_title'])
 
         title = self.complex_["plylst_title"]
-        title.to_csv('title.txt', index=False, header=None, sep='\n')
+        title.to_csv(input_file, index=False, header=None, sep='\n')
         # plylst_title = pd.read_csv('title.txt', sep='\n', header=None)
         # header=None안써주면 0번째 제목이 컬럼으로 감
 
-        input_file = 'title.txt'  # 아까 만들어준 traindata의 텍스트파일
         vocab_size = 32000
-        model_name = 'subword_tokenizer_kor'  # 모델이름 (맘대로 커스텀가능)
         model_type = 'bpe'
         user_defined_symbols = '[PAD],[UNK],[CLS],[SEP],[MASK],[UNK1],[UNK2],[UNK3],[UNK4]'  # 내가 커스텀해주는거네
 
@@ -82,7 +82,7 @@ class Get_data:
         spm.SentencePieceTrainer.Train(cmd)
 
         # 생성된 model파일 불러오기
-        vocab_file = 'subword_tokenizer_kor.model'
+        vocab_file = model_name + '.model'
         vocab = spm.SentencePieceProcessor()
         vocab.load(vocab_file)
 
