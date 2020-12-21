@@ -85,7 +85,7 @@ class Filter_date:  # meta date 를 filter 해주는 class
 
         meta['issue_year'] = year
 
-        with open('meta_final.pickle', 'wb') as f:
+        with open('data/preprocessed/meta_final.pickle', 'wb') as f:
             pickle.dump(meta, f)
 
         return meta
