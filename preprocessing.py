@@ -83,7 +83,7 @@ del tag_clu
 # E. dtl_genre 원핫 인코딩을 했으므로 이 단계 생략
 
 # F . album  아래에서 df 랑 clustering이랑 코드가 합쳐져있음.
-emb_df, album_df = clu_km.clustering( by = 'album'  )
+emb_df = clu_km.clustering( by = 'album'  )
 emb_df.to_pickle('data/digitization/clu_album_emb100.pickle' )
 del emb_df
 # 데이타 프레임 윗단계
