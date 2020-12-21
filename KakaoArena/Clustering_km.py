@@ -66,19 +66,18 @@ class Clustering:
             df = self.complex_[["id", by]].sort_values(by="id")
 
         print(f"digitize ## {by} ")
-        # if by == "tag":
-        #     df.to_pickle('tag_df.pickle')
         items = {}
         if by == 'album' :
             for i, itms in enumerate(self.complex_.songs):
                 items[i] = list(set([str(song_album[itm]) for itm in itms]))
-            emb_df = self.embedding(items, by)
-            return emb_df, pd.DataFrame(list(zip(self.complex_.id, items.values())), columns=['id', 'ablums'])
         else:
             for i, itms in enumerate(df[by]):
                 items[i] = [str(itm) for itm in itms]
 
         emb_df = self.embedding(items, by)
+
+        if by in ['album','tags']:
+            pd.DataFrame(list(zip(self.complex_.id, items.values())), columns=['id', by ]).to_pickle(f'data/preprocessed/{by}_df.pickle')
         return emb_df
 
 

@@ -53,9 +53,9 @@ class Get_cluster_matrix:
             cl_ply_values = [dict(Counter([cl_val.get(str(v)) for v in vs if cl_val.get(str(v)) != None])) for vs in df.gnr]
 
         elif by == 'album':
-            df = df[['id', 'albums']]
+            df = df[['id', 'album']]
             cl_ply_values = [dict(Counter([cl_val.get(str(v)) for v in vs if cl_val.get(str(v)) != None])) for vs in
-                             df.albums]
+                             df.album]
 
         col_dot = [list(d.keys()) for d in cl_ply_values]
         row = np.repeat(range(n_plylst), [len(c) for c in col_dot])
