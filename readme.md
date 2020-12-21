@@ -25,5 +25,5 @@ tqdm
 
 
 %#@$$# 
-Merged_table.tag_gnr_title ( 마찬가지로 형태소 분할된 데이터들을 재활용 할수 있게끔... )
+
 

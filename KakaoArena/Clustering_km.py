@@ -20,7 +20,6 @@ class Clustering:
                        "tag_title" : { 'size' : 100 , "window" : 40, 'min_count' : 1 , "sg": 0 , "clu": 100}}
 
 
-
     def clustering_album( self , clu = 100):
 
         print("clustering -ing")
@@ -50,7 +49,7 @@ class Clustering:
         return emb_df, pd.DataFrame(list(zip(self.complex_.id, result_.values())), columns=['id', 'ablums'])
 
 
-    def clustering_test( self, df = None, by = 'song'):
+    def clustering( self, df = None, by = 'song'):
         """
         title_singer / tag_gnr_title / tag_title --> 별도의 데이터 프레임 필요 ( 외부변수 받음 )
         song / tag / 외부변수 받지 않음
@@ -73,6 +72,8 @@ class Clustering:
         if by == 'album' :
             for i, itms in enumerate(self.complex_.songs):
                 items[i] = list(set([str(song_album[itm]) for itm in itms]))
+            emb_df = self.embedding(items, by)
+            return emb_df, pd.DataFrame(list(zip(self.complex_.id, items.values())), columns=['id', 'ablums'])
         else:
             for i, itms in enumerate(df[by]):
                 items[i] = [str(itm) for itm in itms]
