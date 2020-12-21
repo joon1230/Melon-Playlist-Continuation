@@ -4,7 +4,6 @@ import KakaoArena.Merged_table as mt # 후보군 테이블 merge
 import KakaoArena.Clustering_km as km
 import KakaoArena.Get_df as gd
 import KakaoArena.Get_cluster_matrix as gcm
-import KakaoArena.Select_candidate as sc
 import os
 import time
 print( os.getcwd() )
@@ -64,12 +63,12 @@ song_clu = clu_km.clustering( by = 'songs'  )
 song_clu.to_pickle("data/digitization/clu_song_emb_200.pickle")
 del song_clu
 #
-tag_gnr_title_clu = clu_km.clustering( merged_t.tag_gnr_title(id_title = id_title) , by = 'tag_gnr_title')
+tag_gnr_title_clu = clu_km.clustering( merged_t.tag_gnr_title(id_title = tokenized_title) , by = 'tag_gnr_title')
 tag_gnr_title_clu.to_pickle("data/digitization/clu_tag_gnr_title_emb_100.pickle")
 del tag_gnr_title_clu
 
 # C. singer
-singer_clu = clu_km.clustering(merged_t.title_singer(id_title = id_title) , by = 'title_singer')
+singer_clu = clu_km.clustering(merged_t.title_singer(id_title = tokenized_title) , by = 'title_singer')
 singer_clu.to_pickle("data/digitization/clu_singer_emb_100.pickle")
 del singer_clu
 
