@@ -78,16 +78,13 @@ tag_clu = clu_km.clustering( by = 'tags'  )
 tag_clu.to_pickle("data/digitization/clu_tag_emb_30.pickle")
 del tag_clu
 
-
 # E. dtl_genre 원핫 인코딩을 했으므로 이 단계 생략
-
 
 # F . album  아래에서 df 랑 clustering이랑 코드가 합쳐져있음.
 emb_df, album_df = clu_km.clustering( by = 'album'  )
 emb_df.to_pickle('data/digitization/clu_album_emb100.pickle' )
 del emb_df
 album_df.to_pickle('data/preprocessed/album_df_.pickle') # 데이타 프레임 윗단계
-
 
 #%%
 """
@@ -98,48 +95,57 @@ matrix = gcm.Get_cluster_matrix( complex_, meta, genre )
 # songs
 song_vec = pd.read_pickle( 'data/digitization/clu_song_emb_200.pickle')
 song_vec = song_vec[['songs_id' , 'label'] + list(song_vec.columns[3:12])]
-
 train_song = matrix.get_cluster_matrix( train , song_vec , by = "song")
 val_song = matrix.get_cluster_matrix( val , song_vec , by = "song")
 
-train_song.to_csv('data/matrix/train/song_matrix.csv')
-val_song.to_csv('data/matrix/val/song_matrix.csv')
+train_song.to_csv('data/matrix/train/train_song.csv' , index = False)
+val_song.to_csv('data/matrix/val/val_song.csv' , index = False)
 
 # word_tag_gnr_title
 word_vec = pd.read_pickle( 'data/digitization/clu_tag_gnr_title_emb_100.pickle' )
-
 total_word = matrix.get_cluster_matrix( merged_t.tag_gnr_title() , word_vec , by = 'word')
-
 val_word = total_word.loc[ total_word.id.isin( list(val.id.values) ) ] # word ( val )
 train_word = total_word.loc[ total_word.id.isin( list(train.id.values ) ) ] # word
 
+val_word.to_csv("data/matrix/val/val_word.csv" , index = False)
+train_word.to_csv("data/matrix/train/train_word.csv" , index = False)
+
 # singer
 singer_vec = pd.read_pickle( 'data/digitization/clu_singer_emb_100.pickle')
-
 total_singer = matrix.get_cluster_matrix( merged_t.title_singer() , singer_vec , by = 'word')
 val_singer = total_singer.loc[ total_singer.id.isin( list(val.id.values) ) ] # singer
 train_singer = total_singer.loc[ total_singer.id.isin( list(train.id.values) ) ] # singer
 
+val_singer.to_csv("data/matrix/val/val_singer.csv" , index = False)
+train_singer.to_csv("data/matrix/train/train_singer.csv" , index = False)
+
 # tags
 tag_df = pd.read_pickle('tag_df.pickle') # clustring_tag 함수를 실행시키면 자동으로 저장됨
 tag_vec = pd.read_pickle('data/digitization/clu_tag_emb_30.pickle') # train , val , test 모두 합쳐서 embeding
-
 total_tag = matrix.get_cluster_matrix( tag_df , tag_vec , by = 'tag')
 val_tag = total_tag.loc[ total_tag.id.isin( list(val.id.values) )]
 train_tag = total_tag.loc[ total_tag.id.isin( list(train.id.values) )]
+
+val_tag.to_csv("data/matrix/val/val_tag.csv" , index = False)
+train_tag.to_csv("data/matrix/train/train_tag.csv" , index = False)
 
 # genre
 total_gnr = matrix.get_genre_matrix( complex_ ,meta, genre )
 val_gnr = total_gnr.loc[ total_gnr.id.isin( list(val.id.values) ) ]
 train_gnr = total_gnr.loc[ total_gnr.id.isin( list(train.id.values) ) ]
 
-# album
-album_df = pd.read_pickle('data/album_df.pickle')
-album_vec = pd.read_pickle('data/clu_album_emb100.pickle')
+val_gnr.to_csv("data/matrix/val/val_gnr.csv" , index = False)
+train_gnr.to_csv("data/matrix/train/train_gnr" , index = False)
 
+# album
+album_df = pd.read_pickle('data/preprocessed/album_df.pickle')
+album_vec = pd.read_pickle('data/clu_album_emb100.pickle')
 total_album = matrix.get_cluster_matrix( album_df , album_vec , by = 'album')
 train_album = total_album.loc[ total_album.id.isin( train.id.values ) ]
 val_album = total_album.loc[ total_album.id.isin( val.id.values ) ]
+
+train_album.to_csv("data/matrix/train/train_album.csv",index=False)
+val_album.to_csv("data/matrix/val/val_album.csv",index=False)
 
 # plylst_all
 train_ply = pd.merge( train_song , train_word , on = 'id' , how = 'inner')
