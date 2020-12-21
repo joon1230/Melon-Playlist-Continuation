@@ -72,6 +72,8 @@ class Clustering:
         if by == 'album' :
             for i, itms in enumerate(self.complex_.songs):
                 items[i] = list(set([str(song_album[itm]) for itm in itms]))
+            emb_df = self.embedding(items, by)
+            return emb_df, pd.DataFrame(list(zip(self.complex_.id, items.values())), columns=['id', 'ablums'])
         else:
             for i, itms in enumerate(df[by]):
                 items[i] = [str(itm) for itm in itms]

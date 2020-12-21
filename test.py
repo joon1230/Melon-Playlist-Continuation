@@ -41,6 +41,7 @@ meta = filter_date.kill_zeros()
 merged_t = mt.Merged_table( complex_, genre, meta )
 get_df = gd.Get_data(complex_, genre, meta)
 
+
 # tokenize
 print( "%-20s"%("tokenize"), end = '\r')
 tokenized_title = get_df.get_title_df()
@@ -82,10 +83,10 @@ del tag_clu
 
 
 # F . album  아래에서 df 랑 clustering이랑 코드가 합쳐져있음.
-emb_df = clu_km.clustering( by = 'album'  )
+emb_df, album_df = clu_km.clustering( by = 'album'  )
 emb_df.to_pickle('data/digitization/clu_album_emb100.pickle' )
 del emb_df
-# album_df.to_pickle('data/digitization/album_df_.pickle') # 데이타 프레임 윗단계
+album_df.to_pickle('data/preprocessed/album_df_.pickle') # 데이타 프레임 윗단계
 
 
 #%%
@@ -100,6 +101,9 @@ song_vec = song_vec[['songs_id' , 'label'] + list(song_vec.columns[3:12])]
 
 train_song = matrix.get_cluster_matrix( train , song_vec , by = "song")
 val_song = matrix.get_cluster_matrix( val , song_vec , by = "song")
+
+train_song.to_csv('data/matrix/train/song_matrix.csv')
+val_song.to_csv('data/matrix/val/song_matrix.csv')
 
 # word_tag_gnr_title
 word_vec = pd.read_pickle( 'data/digitization/clu_tag_gnr_title_emb_100.pickle' )
