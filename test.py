@@ -64,12 +64,12 @@ song_clu = clu_km.clustering( by = 'songs'  )
 song_clu.to_pickle("data/digitization/clu_song_emb_200.pickle")
 del song_clu
 #
-tag_gnr_title_clu = clu_km.clustering( merged_t.tag_gnr_title(id_title = id_title) , by = 'tag_gnr_title')
+tag_gnr_title_clu = clu_km.clustering( merged_t.tag_gnr_title(id_title = tokenized_title) , by = 'tag_gnr_title')
 tag_gnr_title_clu.to_pickle("data/digitization/clu_tag_gnr_title_emb_100.pickle")
 del tag_gnr_title_clu
 
 # C. singer
-singer_clu = clu_km.clustering(merged_t.title_singer(id_title = id_title) , by = 'title_singer')
+singer_clu = clu_km.clustering(merged_t.title_singer(id_title = tokenized_title) , by = 'title_singer')
 singer_clu.to_pickle("data/digitization/clu_singer_emb_100.pickle")
 del singer_clu
 
