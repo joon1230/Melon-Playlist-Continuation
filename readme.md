@@ -22,8 +22,13 @@ tqdm
 - album ( album )
 
 ---- 
-
-
-%#@$$# 
+데이터 전처리 
+```angular2
+$ python preprocessing.py
+```
+result
+```angular2
+file_lst..
+```
 
 
