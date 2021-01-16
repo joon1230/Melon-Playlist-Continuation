@@ -171,4 +171,4 @@ val_ply = pd.merge( val_ply , val_album , on = 'id' , how = 'inner')
 train_ply.to_csv("data/matrix/train/train_ply.csv")
 val_ply.to_csv("data/matrix/val/val_ply.csv")
 
-
+# 까임방지
